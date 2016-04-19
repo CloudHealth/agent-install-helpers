@@ -68,16 +68,15 @@ end
 ```
 ---
 - hosts: webservers
-
-vars:
-  cht_unique_registration_code: ???
-
-- name: Ensure the agent is installed
-  command:
-    wget https://s3.amazonaws.com/remote-collector/agent/v14/install_cht_perfmon.sh -O /tmp/install_cht_perfmon.sh &&
-    /tmp/install_cht_perfmon.sh 14 {{ cht_unique_registration_code }} aws
-  args:
-    creates: /opt/cht_perfmon
-  sudo: yes
+  vars:
+    cht_unique_registration_code: ??
+  tasks:
+    - name: Ensure the agent is installed
+      command:
+        wget https://s3.amazonaws.com/remote-collector/agent/v14/install_cht_perfmon.sh -O /tmp/install_cht_perfmon.sh &&
+        /tmp/install_cht_perfmon.sh 14 {{ cht_unique_registration_code }} aws
+      args:
+        creates: /opt/cht_perfmon
+      sudo: yes
   
   ```
